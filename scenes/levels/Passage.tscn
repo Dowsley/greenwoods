@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_08.png" type="Texture" id=1]
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_09.png" type="Texture" id=2]
@@ -10,110 +10,165 @@
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_03.png" type="Texture" id=8]
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_05.png" type="Texture" id=9]
 [ext_resource path="res://scenes/entities/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/Sprite-0001.png" type="Texture" id=11]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+lifetime_randomness = 1.0
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 300.0
+angular_velocity = 300.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 200.0
+angle = 360.0
+angle_random = 1.0
 
 [node name="Passage" type="Node2D"]
 
-[node name="ForestStatic" type="Node2D" parent="."]
+[node name="Forest" type="Node2D" parent="."]
 position = Vector2( 142, 70 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Background-forest01" type="Sprite" parent="ForestStatic"]
+[node name="Background-forest01" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Background-forest02" type="Sprite" parent="ForestStatic"]
+[node name="GodRaysBack" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Background-forest03" type="Sprite" parent="ForestStatic"]
+[node name="Background-forest03" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Background-forest04" type="Sprite" parent="ForestStatic"]
+[node name="Background-forest04" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="RigidBody2D" type="StaticBody2D" parent="ForestStatic/Background-forest04"]
+[node name="RigidBody2D" type="StaticBody2D" parent="Forest/Background-forest04"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ForestStatic/Background-forest04/RigidBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forest/Background-forest04/RigidBody2D"]
 polygon = PoolVector2Array( -816, 151, -794, 152, -761, 142, -520, 131, -485, 125, -430, 136, -373, 136, -270, 139, -224, 132, -180, 130, -156, 130, -38, 135, 4, 137, 106, 132, 226, 131, 407, 131, 504, 125, 654, 132, 682, 131, 766, 130, 809, 110, 810, 65, -813, 68 )
 
-[node name="Background-forest05" type="Sprite" parent="ForestStatic"]
+[node name="Background-forest05" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Background-forest06" type="Sprite" parent="ForestStatic"]
+[node name="GodRaysFore" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Background-forest07" type="Sprite" parent="ForestStatic"]
+[node name="Particles2D" type="Particles2D" parent="Forest/GodRaysFore"]
+material = SubResource( 1 )
+position = Vector2( -15, 0 )
+process_material = SubResource( 2 )
+texture = ExtResource( 11 )
+
+[node name="Background-forest07" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Background-forest08" type="Sprite" parent="ForestStatic"]
+[node name="Background-forest08" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="RigidBody2D" type="StaticBody2D" parent="ForestStatic/Background-forest08"]
+[node name="RigidBody2D" type="StaticBody2D" parent="Forest/Background-forest08"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -582.8, 99, -580.5, 96.6, -578, 97.7, -578, 99, -569.5, 105, -553, 105, -553, 106.9, -545.4, 112, -533, 110.8, -533, 112.7, -527.7, 115, -527.1, 115, -524.1, 110, -521.5, 110, -516.6, 107, -504, 107, -504, 108.9, -494, 114.9, -494, 118, -491.7, 134, -493.7, 134, -496.7, 141, -499.8, 141, -516.1, 142.8, -522.1, 150, -524.5, 150, -530.5, 153, -547.5, 153, -559.5, 146, -568.4, 146, -573.4, 144, -574.3, 144, -582.3, 150, -601.2, 150, -607, 148.6, -607, 146.7, -613, 139.7, -613, 131.5, -608, 122.5, -609.2, 111, -607.1, 111, -599.1, 99, -597.4, 99, -594, 97.6, -594, 95.2 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -668, 107.2, -668, 108.9, -659, 113.8, -659, 116.4, -656.2, 120.6, -648.7, 115, -634, 115, -634, 117, -622, 126, -622, 128.7, -619.6, 143, -622, 143, -629, 152, -651.8, 152, -660.7, 144.1, -668.5, 148, -687, 148, -687, 146.8, -709, 144.8, -709, 142.8, -709.8, 142, -721.3, 150, -734.2, 150, -741, 148.6, -741, 146.8, -749, 138.8, -749, 134, -750.2, 123, -748.1, 123, -740.1, 111, -738.3, 111, -727, 107.2, -727, 109.5, -714.6, 112.6, -702, 105.8, -702, 103.8 )
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -84, 105.1, -84, 106.9, -76.4, 112, -75.6, 112, -64.6, 105, -53.7, 105, -49, 106.6, -49, 107.6, -43, 109.6, -43, 111.3, -37, 119.3, -37, 123, -35.8, 138, -37.8, 138, -40.8, 144, -43.5, 144, -49.5, 147, -66.5, 147, -76.5, 142, -84.5, 146, -101.2, 146, -108, 144.6, -108, 143, -115.4, 137.2, -125.2, 147, -141.2, 147, -149, 145.7, -149, 144.4, -154, 142.4, -154, 139.7, -158, 134.7, -158, 122, -156.5, 122, -154.5, 115, -152.9, 115, -146.9, 108, -145.5, 108, -140.6, 105, -137.6, 105, -130.8, 108, -128.5, 105.6, -126, 106.7, -126, 108.1, -115.7, 117.6, -109, 108, -106.3, 108, -101, 105.7, -101, 103.8 )
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( 281, 105.1, 281, 106.9, 288.6, 112, 289.5, 112, 294.4, 109, 306.4, 109, 312.4, 111.2, 333, 107.6, 333, 109.9, 343, 115.9, 343, 119, 345.3, 135, 343, 135, 336, 144, 326.9, 144, 313.6, 142.2, 305.7, 149, 283.3, 149, 279.3, 146, 263.8, 146, 257, 144.6, 257, 143.1, 253.5, 141, 238.4, 148, 219.8, 148, 214, 146.6, 214, 145.1, 209, 142.1, 209, 137, 207.7, 128, 209.8, 128, 215.8, 116, 218.7, 116, 234.6, 109, 246.4, 109, 252.8, 111.4, 264, 105.8, 264, 103.8 )
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -260, 106.6, -251, 109.6, -251, 111.4, -244.2, 120.7, -237.6, 116, -224.5, 116, -222, 117.2, -213.8, 110, -210.2, 110, -197, 108.8, -197, 110.8, -187, 115.8, -187, 118.6, -183.6, 137, -186.3, 137, -193.3, 143, -208.2, 143, -218.2, 153, -240.8, 153, -250.7, 144, -251.5, 144, -257.5, 147, -274.2, 147, -281, 145.6, -281, 144, -289, 138, -289, 133, -290.2, 122, -288.5, 122, -285.5, 112, -283.6, 112, -274, 106.7, -274, 105, -260, 105 )
 
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( 450.2, 108, 452.5, 105.6, 455, 106.7, 455, 107.9, 463, 112.9, 463, 114.7, 463.4, 116, 474, 116, 474, 117.9, 484, 123.9, 484, 126.3, 488, 131.3, 488, 144, 486, 144, 479, 153, 456.3, 153, 449.3, 147, 439.5, 147, 433.5, 144, 431.6, 144, 424.6, 149, 405.8, 149, 400, 147.6, 400, 146.1, 395, 143.1, 395, 138, 393.7, 129, 395.8, 129, 401.8, 117, 404.7, 117, 421, 114.7, 421, 116.5, 424.6, 117.6, 439, 107, 439, 104.2 )
 
-[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( 522, 106.7, 529.3, 110, 538.5, 105, 541.4, 105, 548.2, 108, 550.5, 105.6, 553, 106.7, 553, 107.9, 561, 112.9, 561, 114.7, 561.4, 115.9, 581, 113.8, 581, 115.7, 586.1, 117.9, 591, 111, 593.5, 111, 600.5, 107, 611.6, 107, 623.5, 114.9, 633.3, 107, 636.4, 107, 643.2, 110, 645.5, 107.6, 648, 108.7, 648, 109.9, 656, 114.9, 656, 116.5, 660, 123.5, 660, 135, 658.3, 135, 654.3, 144, 652.7, 144, 646.7, 149, 632.5, 149, 624.5, 145, 623.5, 145, 615.5, 149, 597, 149, 597, 147.5, 590, 145.6, 550, 153.4, 550, 151.4, 531.5, 144, 530.5, 144, 524.5, 147, 506, 147, 506, 145.3, 494, 140.3, 494, 137, 491.7, 122, 493.5, 122, 496.5, 112, 498.4, 112, 508, 106.7, 508, 105, 522, 105 )
 
-[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -362.8, 109, -360.5, 106.6, -358, 107.7, -358, 108.9, -350, 113.9, -350, 115.5, -346, 122.5, -346, 135, -347.6, 135, -350.6, 144, -352.5, 144, -359.5, 148, -373.5, 148, -387, 141.2, -387, 138.8, -391, 134.8, -391, 131.8, -387.6, 118, -386, 118, -379, 109, -377.4, 109, -374, 107.6, -374, 105.2 )
 
-[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( 150, 110.8, 162, 116.8, 162, 119.5, 166, 126.5, 166, 142, 164, 142, 158, 150, 152.1, 150, 134, 151.1, 134, 150, 129, 150, 129, 148.1, 124.3, 145, 123.7, 145, 119.7, 148, 100.8, 148, 95, 146.6, 95, 145.1, 90, 142.1, 90, 137, 88.7, 128, 90.5, 128, 92.4, 120, 94.2, 120, 99.2, 115, 102.8, 115, 116, 113.8, 116, 115.8, 122.9, 119.2, 128.1, 113, 130.7, 113, 136, 110.7, 136, 109, 150, 109 )
 
-[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( 62, 113, 73, 121, 73, 126, 74.2, 138, 72, 138, 65, 147, 58.9, 147, 43.6, 145.2, 34.8, 153, 11, 153, 11, 151, 2, 144, 2, 128, 3.70001, 128, 6.70001, 121, 8.40002, 121, 15.4, 116, 28.6, 116, 37, 121.1, 42, 114, 44.6, 114, 48, 112.6, 48, 111, 62, 111 )
 
-[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -777.8, 116, -775.5, 113.6, -773, 114.7, -773, 115.9, -765, 120.9, -765, 122.5, -761, 129.5, -761, 141, -762.6, 141, -765.6, 150, -767.4, 150, -774.4, 155, -788.5, 155, -800, 149.2, -800, 146.5, -804, 139.5, -804, 129.7, -802.4, 125, -801, 125, -794, 116, -792.4, 116, -789, 114.6, -789, 112.2 )
 
-[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="ForestStatic/Background-forest08/RigidBody2D"]
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="Forest/Background-forest08/RigidBody2D"]
 polygon = PoolVector2Array( -458, 115.3, -452, 116.3, -452, 118.2, -449.2, 121, -447.9, 121, -433, 122.1, -433, 124.4, -428, 131.4, -428, 142, -429.9, 142, -432.9, 147, -435.5, 147, -439.5, 149, -448.1, 149, -479, 146.9, -479, 145.1, -484, 142.1, -484, 137, -485.3, 128, -483.5, 128, -481.6, 120, -479.6, 120, -473, 115.9, -473, 114, -458, 114 )
 
-[node name="Background-forest09" type="Sprite" parent="ForestStatic"]
+[node name="Background-forest09" type="Sprite" parent="Forest"]
 position = Vector2( 677, 471 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="RigidBody2D" type="StaticBody2D" parent="ForestStatic/Background-forest09"]
+[node name="RigidBody2D" type="StaticBody2D" parent="Forest/Background-forest09"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ForestStatic/Background-forest09/RigidBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Forest/Background-forest09/RigidBody2D"]
 polygon = PoolVector2Array( 647, 197.3, 647, 199.6, 654.3, 217, 662.2, 222.7, 673, 208, 674.7, 208, 686, 204.2, 686, 206, 694, 206, 694, 207.9, 702, 212.9, 702, 214.5, 706.1, 222, 711.6, 222, 719.6, 227, 720.3, 227, 732.3, 217, 735.4, 217, 742.2, 220, 744.5, 217.6, 747, 218.7, 747, 219.9, 755, 224.9, 755, 226.6, 755.2, 227.4, 764.4, 221, 775, 221, 775, 222.6, 785, 226.6, 785, 228.5, 787.1, 232, 805, 230.9, 805, 232.9, 815, 238.9, 815, 242, 817, 540, -817, 540, -817, 253, -815.4, 253, -811.4, 243, -808.5, 243, -803.6, 240, -792.3, 240, -782.3, 248, -778.9, 248, -776.7, 233, -775, 233, -768, 224, -766, 224, -751, 220.5, -751, 222.7, -740.4, 227.3, -735.2, 217, -713.7, 217, -706.1, 205, -703.4, 205, -692, 202.5, -692, 205.1, -686, 210.1, -686, 213.6, -682.7, 221, -671, 229, -671, 231.6, -657, 232, -650.6, 212, -648.8, 212, -643.8, 207, -639.3, 207, -630, 205.7, -630, 208.1, -617, 219.1, -617, 221.6, -604, 224, -599.8, 214, -589.3, 214, -582.7, 219, -570.7, 210, -567.6, 210, -560.8, 213, -558.5, 210.6, -556, 211.7, -556, 212.9, -550.5, 216, -546.6, 216, -535.5, 210, -524.7, 210, -520, 211.6, -520, 212.9, -511, 217.8, -511, 220.5, -507.6, 230, -496.1, 242, -487, 242, -477, 228, -475.5, 228, -470.6, 225, -467.6, 225, -460.8, 228, -458.5, 225.6, -456, 226.7, -456, 227.9, -448, 232.9, -448, 234.7, -442.5, 252, -430, 250.8, -411.5, 249, -407, 245.3, -408, 219, -406.1, 219, -400.1, 209, -392.7, 209, -381, 212.5, -381, 214.5, -375.9, 223, -366.5, 218, -355.6, 218, -348.6, 221.1, -344.5, 207, -343.1, 207, -339.1, 201, -336.5, 201, -329.5, 197, -317, 197, -317, 198.8, -306.2, 204.2, -300, 196, -292.5, 196, -280, 202.8, -280, 206.5, -267.8, 230, -257, 230.3, -257, 217.8, -254.6, 208, -253, 208, -248, 201, -240.6, 201, -228, 205.6, -228, 208.5, -218.8, 226.8, -210, 214, -206.3, 214, -198, 212.6, -198, 215.1, -190.7, 221.7, -184.9, 215, -182.5, 215, -175.5, 211, -164.6, 211, -154, 215.7, -154, 217.3, -149, 224, -145, 224.6, -128, 218.6, -120.1, 206, -117.4, 206, -106, 203.5, -106, 205.8, -102, 207.8, -102, 210.3, -95.9, 220, -85, 220, -85, 221.9, -77, 226.9, -77, 228.5, -73, 235.5, -73, 237.2, -74.7, 248.5, -67, 255.1, -67, 257.5, -64.2, 263, -59, 256, -56.5, 256, -49.5, 252, -38.6, 252, -28, 256.7, -28, 258.3, -23, 265, -16.8, 265, -16, 264.2, -16, 261.4, -8.90002, 250.8, -16, 241.7, -16, 233.7, -14.7, 229.8, -32, 227.8, -32, 221.6, -30, 215, -25, 206, -22, 204, -14, 204, -11, 205, -7, 208, -2, 215, 0, 218, 5, 218, 8, 214, 19, 214, 19, 216.3, 25.9, 224, 27, 224, 46, 212.9, 46, 209.4, 53.9, 197, 61.5, 197, 74, 203.8, 74, 207.5, 75.9, 210.6, 82.4, 206, 96, 206, 96, 207.5, 103, 209.5, 103, 211.2, 107.5, 215.7, 112.2, 211, 115.7, 211, 124, 209.6, 124, 212.1, 130, 217.1, 130, 220.5, 134.9, 228.6, 141.4, 224, 153.3, 224, 158, 225.6, 158, 227.1, 167, 235.1, 167, 239.6, 168.3, 245.9, 170.9, 242, 173.9, 242, 187, 238.5, 187, 237.8, 205, 228.8, 205, 231, 213, 231, 213, 232.8, 219, 235.8, 219, 237.5, 225.2, 249, 225.8, 249, 235, 246.3, 235, 248.6, 237.7, 249.5, 247.1, 238, 249.6, 238, 259.1, 236.3, 264.9, 227, 268.2, 227, 270, 225.2, 270, 223.5, 274.8, 215, 277.4, 215, 280.4, 213, 287.9, 213, 295.8, 221.9, 302.5, 218, 315, 218, 315, 220, 326.5, 229, 329, 227.8, 329, 220.6, 333.7, 210, 335.4, 210, 344.4, 204, 352.8, 204, 367.8, 219, 368.6, 219, 386, 215.6, 386, 217.8, 398.5, 224, 407, 222.6, 407, 225, 409.5, 226.9, 422.3, 217, 434.3, 217, 439, 218.6, 439, 219.9, 446, 223.8, 446, 226.5, 449, 232.5, 449, 240.4, 450, 241.8, 458, 237.8, 458, 231.4, 464.9, 220, 475.6, 220, 491.8, 229.9, 492.2, 229.2, 489, 227.1, 489, 221.8, 490.4, 215, 491.8, 215, 497.8, 204, 509.9, 204, 516.9, 212, 520.5, 212, 529.5, 217, 530.3, 217, 540.3, 209, 543.8, 209, 556, 207.8, 556, 209.8, 568, 215.8, 568, 218.6, 573.2, 230, 581.4, 230, 592, 234.7, 592, 236.3, 596.6, 242.4, 602.1, 236, 611, 236, 611, 237.3, 621, 239.4, 621, 241.3, 624, 244.9, 633, 243.3, 633.8, 231.8, 619, 228.6, 619, 210.7, 622.5, 199, 624.2, 199, 627, 196.2, 627, 193.6 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ForestStatic/Background-forest09/RigidBody2D"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Forest/Background-forest09/RigidBody2D"]
 polygon = PoolVector2Array( 254, 215.2, 254, 217.4, 259.3, 225.9, 258.2, 228, 237.5, 228, 240, 216.6, 240, 213.8 )
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="ForestStatic/Background-forest09/RigidBody2D"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Forest/Background-forest09/RigidBody2D"]
 polygon = PoolVector2Array( 594, 215.2, 594, 217.4, 599.3, 225.9, 598.2, 228, 577.5, 228, 580, 216.6, 580, 213.8 )
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="ForestStatic/Background-forest09/RigidBody2D"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Forest/Background-forest09/RigidBody2D"]
 polygon = PoolVector2Array( -39, 220.3, -39, 223.2, -33.6, 228.5, -34.7, 231, -55, 231, -55, 223, -52.7, 223, -50, 221, -50, 218.7 )
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
 position = Vector2( 795, 707 )
+WALK_SPEED = 40
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -3, -142 )

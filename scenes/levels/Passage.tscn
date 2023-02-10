@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_08.png" type="Texture" id=1]
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_09.png" type="Texture" id=2]
@@ -11,26 +11,51 @@
 [ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/Background-forest_05.png" type="Texture" id=9]
 [ext_resource path="res://scenes/entities/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Sprite-0001.png" type="Texture" id=11]
+[ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/0Background-forest_02_mask.png" type="Texture" id=12]
+[ext_resource path="res://assets/GREEN-WOODS/BACKGROUND_FOREST/Background-layers/0Background-forest_06-lights_mask.png" type="Texture" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=1]
-blend_mode = 1
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.194767, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.828488, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
 [sub_resource type="ParticlesMaterial" id=2]
-lifetime_randomness = 1.0
+emission_shape = 2
+emission_box_extents = Vector3( 500, 400, 1 )
 flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 300.0
-angular_velocity = 300.0
-angular_velocity_random = 1.0
+spread = 180.0
+gravity = Vector3( 0, 0.5, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel = 200.0
-angle = 360.0
-angle_random = 1.0
+scale = 0.6
+scale_curve = SubResource( 4 )
+
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 700, 400, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0.5, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 4 )
 
 [node name="Passage" type="Node2D"]
 
@@ -53,6 +78,25 @@ texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Particles2D" type="Particles2D" parent="Forest/GodRaysBack"]
+modulate = Color( 1, 1, 1, 0.294118 )
+light_mask = 2
+material = SubResource( 1 )
+position = Vector2( -116, 88 )
+amount = 1000
+lifetime = 5.0
+preprocess = 10.0
+speed_scale = 0.2
+visibility_rect = Rect2( -700, -500, 1800, 700 )
+process_material = SubResource( 2 )
+texture = ExtResource( 11 )
+
+[node name="Light2D" type="Light2D" parent="Forest/GodRaysBack"]
+position = Vector2( 23, -16 )
+texture = ExtResource( 12 )
+mode = 3
+range_item_cull_mask = 2
 
 [node name="Background-forest03" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
@@ -88,10 +132,23 @@ __meta__ = {
 }
 
 [node name="Particles2D" type="Particles2D" parent="Forest/GodRaysFore"]
-material = SubResource( 1 )
-position = Vector2( -15, 0 )
-process_material = SubResource( 2 )
+modulate = Color( 1, 1, 1, 0.772549 )
+light_mask = 4
+material = SubResource( 5 )
+position = Vector2( 25, 54 )
+amount = 2000
+lifetime = 5.0
+preprocess = 10.0
+speed_scale = 0.5
+visibility_rect = Rect2( -700, -500, 1800, 700 )
+process_material = SubResource( 6 )
 texture = ExtResource( 11 )
+
+[node name="Light2D" type="Light2D" parent="Forest/GodRaysFore"]
+position = Vector2( 23, -16 )
+texture = ExtResource( 13 )
+mode = 3
+range_item_cull_mask = 4
 
 [node name="Background-forest07" type="Sprite" parent="Forest"]
 position = Vector2( 675, 471 )
